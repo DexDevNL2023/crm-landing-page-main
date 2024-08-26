@@ -99,12 +99,7 @@ import {RouterLink, RouterModule} from "@angular/router";
 import {MessageService} from "primeng/api";
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { AppAccessdeniedComponent } from './utilities/pages/accesdenied/app.accessdenied.component';
-import { AppErrorComponent } from './utilities/pages/error/app.error.component';
-import { AppHelpComponent } from './utilities/pages/help/app.help.component';
-import { AppNotfoundComponent } from './utilities/pages/notfound/app.notfound.component';
 import { HomeComponent } from './landing-pages/home.component';
-import { EmailService } from './utilities/services/email.service';
 
 
 // Function to load translation files
@@ -214,15 +209,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     ],
     declarations: [
         AppComponent,
-        AppHelpComponent,
-        AppNotfoundComponent,
-        AppErrorComponent,
-        AppAccessdeniedComponent,
         HomeComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
-        MessageService, EmailService
+        MessageService
     ],
     exports: [RouterModule],
     bootstrap: [AppComponent],
