@@ -1,0 +1,544 @@
+<div class="ng-star-inserted">
+    <div *ngIf="showBanner" class="bg-bluegray-900 text-gray-100 p-3 flex justify-content-between lg:justify-content-center align-items-center flex-wrap">
+        <div class="font-bold mr-8">🔥 Offres Spéciales en BTP et Architecture !</div>
+        <div class="align-items-center hidden lg:flex">
+            <span class="line-height-3">Découvrez nos offres exclusives pour vos projets de construction, d'architecture, et de rénovation.</span>
+        </div>
+        <a (click)="closeBanner()" class="flex align-items-center no-underline justify-content-center border-circle text-gray-100 hover:bg-bluegray-700 cursor-pointer transition-colors transition-duration-150" style="width: 2rem; height: 2rem;">
+            <i class="pi pi-times"></i>
+        </a>
+    </div>
+    
+    <!-- <div class="bg-gray-900 shadow-2 flex align-items-center justify-content-between relative py-2 px-6 lg:px-0"> -->
+    <!-- <div class="surface-overlay shadow-2 flex align-items-center justify-content-between relative lg:static flex-wrap px-6 lg:px-0"> -->
+    <div class="surface-overlay shadow-2 flex align-items-center justify-content-between relative py-2 px-6 lg:px-0">
+        <!-- Logo -->
+        <img src="assets/images/GVA.png" alt="Logo BTP" height="50">
+    
+        <!-- Hamburger Icon for Mobile -->
+        <a (click)="toggleMenu()" class="p-element cursor-pointer block lg:hidden text-700">
+            <i class="pi pi-bars text-4xl"></i>
+        </a>
+    
+        <!-- Navigation Menu -->
+        <!-- class="align-items-center flex-grow-1 justify-content-between lg:flex hidden lg:block z-2" -->
+        <!-- class="menu-container align-items-center flex-grow-1 justify-content-between lg:flex absolute lg:static surface-overlay left-0 top-100 px-6 lg:px-0 z-2 shadow-2 lg:shadow-none" -->
+        <!-- class="menu-container align-items-center flex-grow-1 justify-content-between lg:flex absolute lg:static w-full surface-overlay left-0 top-100 px-6 lg:px-0 z-2 shadow-2 lg:shadow-none" -->
+        <!-- class="menu-container align-items-center flex-grow-1 justify-content-between lg:flex absolute lg:static w-full h-full lg:h-auto surface-overlay left-0 top-0 z-50 shadow-2 lg:shadow-none transition-all duration-300 ease-in-out" -->
+        <div [ngClass]="{'hidden': !isMenuVisible, 'block': isMenuVisible, 'active': isMenuVisible && !isMenuVisible}" 
+        class="menu-container align-items-center flex-grow-1 justify-content-between lg:flex absolute lg:static w-full surface-overlay left-0 top-100 px-6 lg:px-0 z-2 shadow-2 lg:shadow-none">
+            <section></section>
+            <ul class="list-none p-0 m-0 flex lg:align-items-center text-900 select-none flex-column lg:flex-row cursor-pointer">
+                <li class="relative" (mouseenter)="showDropdown('services')" (mouseleave)="hideDropdown('services')">
+                    <a class="p-element p-ripple flex px-0 lg:px-5 py-3 align-items-center hover:text-blue-600 font-medium transition-colors transition-duration-150">
+                        <span>Services</span>
+                        <i class="pi pi-chevron-down ml-auto lg:ml-3"></i>
+                    </a>
+                    <ul *ngIf="isDropdownVisible['services']" class="list-none p-0 m-0 border-round shadow-0 lg:shadow-2 lg:absolute surface-overlay origin-top w-full lg:w-15rem">
+                        <li>
+                            <a class="p-ripple p-element flex p-3 align-items-center hover:surface-50 transition-colors transition-duration-150">
+                                <i class="pi pi-building text-2xl mr-2 text-blue-600"></i>
+                                <span>BTP</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="p-ripple p-element flex p-3 align-items-center hover:surface-50 transition-colors transition-duration-150">
+                                <i class="pi pi-pencil text-2xl mr-2 text-blue-600"></i>
+                                <span>Architecture</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="p-ripple p-element flex p-3 align-items-center hover:surface-50 transition-colors transition-duration-150">
+                                <i class="pi pi-map text-2xl mr-2 text-blue-600"></i>
+                                <span>Conception des Plans</span>
+                            </a>
+                        </li>
+                        <li class="relative" (mouseenter)="showDropdown('realisation')" (mouseleave)="hideDropdown('realisation')">
+                            <a class="p-element p-ripple flex p-3 align-items-center hover:surface-50 transition-colors transition-duration-150">
+                                <i class="pi pi-tools text-2xl mr-2 text-blue-600"></i>
+                                <span>Réalisation</span>
+                                <i class="pi pi-chevron-down ml-auto lg:-rotate-90"></i>
+                            </a>
+                            <ul *ngIf="isDropdownVisible['realisation']" class="list-none py-3 pl-3 pr-0 m-0 lg:px-0 lg:py-0 border-round shadow-0 lg:shadow-2 lg:absolute surface-overlay origin-top w-full lg:w-15rem cursor-pointer left-100 top-0">
+                                <li>
+                                    <a class="p-ripple p-element flex p-3 align-items-center hover:surface-50 transition-colors transition-duration-150">
+                                        <i class="pi pi-briefcase mr-2"></i>
+                                        <span class="font-medium">Projets en Cours</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="p-ripple p-element flex p-3 align-items-center hover:surface-50 transition-colors transition-duration-150">
+                                        <i class="pi pi-check-circle mr-2"></i>
+                                        <span class="font-medium">Réalisations Terminées</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Other Menu Items -->
+                <li>
+                    <a class="p-ripple p-element flex px-0 lg:px-5 py-3 hover:text-blue-600 font-medium transition-colors transition-duration-150">
+                        <span>À Propos</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="p-ripple p-element flex px-0 lg:px-5 py-3 hover:text-blue-600 font-medium transition-colors transition-duration-150">
+                        <span>Blog</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="p-ripple p-element flex px-0 lg:px-5 py-3 hover:text-blue-600 font-medium transition-colors transition-duration-150">
+                        <span>Contact</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>    
+    
+    <div class="relative p-6 overflow-hidden">
+        <img src="assets/images/hero-construction-1.jpg" alt="Image" class="absolute top-0 left-0 w-auto h-full block md:w-full">
+        <div class="text-center my-6 relative">
+            <div class="text-6xl text-primary font-bold mb-4">BTP Architectes</div>
+            <p class="mt-0 mb-4 line-height-3 text-center mx-auto text-white" style="max-width: 500px;">
+                Spécialisés en BTP, architecture, conception des plans et réalisation, nous offrons des solutions complètes et sur mesure pour tous vos projets de construction.
+            </p>
+            <button pbutton="" pripple="" label="En Savoir Plus" type="button" class="p-element p-ripple p-button p-component">
+                <span class="p-button-label">En Savoir Plus</span>
+                <span class="p-ink"></span>
+            </button>
+            <p class="text-sm mt-4 mb-4 line-height-3 text-white">Disponible pour tous vos projets de construction et de rénovation</p>
+            <div class="flex justify-content-center align-items-center">
+                <a href="https://www.facebook.com" class="text-white mr-3">
+                    <i class="pi pi-facebook text-2xl"></i>
+                </a>
+                <a href="https://www.linkedin.com" class="text-white mr-3">
+                    <i class="pi pi-linkedin text-2xl"></i>
+                </a>
+                <a href="mailto:contact@votreentreprise.com" class="text-white">
+                    <i class="pi pi-envelope text-2xl"></i>
+                </a>
+            </div>
+        </div>
+    </div>    
+    
+    <div class="surface-section px-4 py-8 md:px-6 lg:px-8 text-center">
+        <div class="mb-3 font-bold text-3xl">
+            <span class="text-900">Un Service, </span><span class="text-blue-600">De Nombreuses Solutions</span>
+        </div>
+        <div class="text-700 mb-6">
+            Expertise en BTP, architecture, conception des plans et réalisation pour transformer vos projets en succès.
+        </div>
+        <div class="grid">
+            <div class="col-12 md:col-4 mb-4 px-5">
+                <span class="p-3 shadow-2 mb-3 inline-block surface-card" style="border-radius: 10px;">
+                    <i class="pi pi-building text-4xl text-blue-500"></i>
+                </span>
+                <div class="text-900 text-xl mb-3 font-medium">Architecture Innovante</div>
+                <span class="text-700 line-height-3">
+                    Conception de plans modernes et fonctionnels pour optimiser l'espace et répondre à vos besoins spécifiques.
+                </span>
+            </div>
+            <div class="col-12 md:col-4 mb-4 px-5">
+                <span class="p-3 shadow-2 mb-3 inline-block surface-card" style="border-radius: 10px;">
+                    <i class="pi pi-home text-4xl text-blue-500"></i>
+                </span>
+                <div class="text-900 text-xl mb-3 font-medium">Construction de Qualité</div>
+                <span class="text-700 line-height-3">
+                    Réalisation de projets de construction avec des matériaux de qualité et des techniques éprouvées.
+                </span>
+            </div>
+            <div class="col-12 md:col-4 mb-4 px-5">
+                <span class="p-3 shadow-2 mb-3 inline-block surface-card" style="border-radius: 10px;">
+                    <i class="pi pi-calendar text-4xl text-blue-500"></i>
+                </span>
+                <div class="text-900 text-xl mb-3 font-medium">Gestion de Projet</div>
+                <span class="text-700 line-height-3">
+                    Planification et gestion de projet rigoureuses pour respecter les délais et le budget.
+                </span>
+            </div>
+            <div class="col-12 md:col-4 mb-4 px-5">
+                <span class="p-3 shadow-2 mb-3 inline-block surface-card" style="border-radius: 10px;">
+                    <i class="pi pi-cog text-4xl text-blue-500"></i>
+                </span>
+                <div class="text-900 text-xl mb-3 font-medium">Expertise Technique</div>
+                <span class="text-700 line-height-3">
+                    Expertise technique et conseils professionnels pour assurer la conformité aux normes et règlements.
+                </span>
+            </div>
+            <div class="col-12 md:col-4 mb-4 px-5">
+                <span class="p-3 shadow-2 mb-3 inline-block surface-card" style="border-radius: 10px;">
+                    <i class="pi pi-star text-4xl text-blue-500"></i>
+                </span>
+                <div class="text-900 text-xl mb-3 font-medium">Satisfaction Client</div>
+                <span class="text-700 line-height-3">
+                    Engagement envers la satisfaction client avec un suivi personnalisé et des solutions adaptées.
+                </span>
+            </div>
+            <div class="col-12 md:col-4 mb-4 px-3">
+                <span class="p-3 shadow-2 mb-3 inline-block surface-card" style="border-radius: 10px;">
+                    <i class="pi pi-briefcase text-4xl text-blue-500"></i>
+                </span>
+                <div class="text-900 text-xl mb-3 font-medium">Expertise Sectorielle</div>
+                <span class="text-700 line-height-3">
+                    Expérience approfondie dans le secteur du BTP pour des solutions adaptées à chaque projet.
+                </span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="surface-section px-4 pb-8 md:px-6 lg:px-8">
+        <div class="p-6 shadow-2 flex flex-column md:flex-row align-items-center justify-content-between"
+            style="border-radius: 1rem; background: linear-gradient(0deg, rgba(0, 123, 255, 0.5), rgba(0, 123, 255, 0.5)), linear-gradient(92.54deg, #1C80CF 47.88%, #FFFFFF 100.01%);">
+            <div class="pr-6">
+                <div class="text-blue-100 font-medium text-xl mb-3">FAITES ÉVOLUER VOS PROJETS</div>
+                <div class="text-white font-medium text-5xl">Optimisez vos projets BTP et architecture</div>
+            </div>
+            <div class="mt-4 mr-auto md:mt-0 md:mr-0">
+                <button pbutton="" pripple="" label="Commencez Maintenant"
+                    class="p-element p-ripple font-bold px-5 py-3 p-button-warning p-button-rounded p-button-raised white-space-nowrap p-button p-component">
+                    <span class="p-button-label">Commencez Maintenant</span><span class="p-ink"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="surface-ground px-4 py-8 md:px-6 lg:px-8">
+        <div>
+            <div class="text-900 font-bold text-4xl line-height-3 mb-3 text-center">Réalisations et Statistiques</div>
+            <p class="text-600 line-height-3 text-lg m-0 mb-6 text-center">Découvrez nos accomplissements dans le secteur du BTP et de l'architecture. Nos projets reflètent notre expertise et notre engagement envers l'excellence.</p>
+            <div class="grid surface-card shadow-2" style="border-radius: 10px;">
+                <div class="col-12 md:col-3 px-5 py-5">
+                    <i class="pi pi-building text-4xl text-blue-600 mb-3"></i>
+                    <div class="text-900 font-bold text-4xl mb-3 line-height-3">150</div>
+                    <p class="text-700 m-0">Projets de construction achevés avec succès.</p>
+                </div>
+                <div class="col-12 md:col-3 px-5 py-5">
+                    <i class="pi pi-calendar text-4xl text-orange-500 mb-3"></i>
+                    <div class="text-900 font-bold text-4xl mb-3 line-height-3">5 ans</div>
+                    <p class="text-700 m-0">D'expérience dans la conception et la réalisation.</p>
+                </div>
+                <div class="col-12 md:col-3 px-5 py-5">
+                    <i class="pi pi-map text-4xl text-cyan-600 mb-3"></i>
+                    <div class="text-900 font-bold text-4xl mb-3 line-height-3">200 km²</div>
+                    <p class="text-700 m-0">De terrains développés et optimisés.</p>
+                </div>
+                <div class="col-12 md:col-3 px-5 py-5">
+                    <i class="pi pi-briefcase text-4xl text-purple-500 mb-3"></i>
+                    <div class="text-900 font-bold text-4xl mb-3 line-height-3">30</div>
+                    <p class="text-700 m-0">Clients satisfaits et projets réalisés à leur entière satisfaction.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="surface-section px-4 py-8 md:px-6 lg:px-8">
+        <div>
+            <div class="text-900 mb-3 font-bold text-4xl text-center">Nos Partenaires de Confiance</div>
+            <div class="text-600 mb-6 line-height-3 text-xl text-center">Nous collaborons avec les principaux acteurs du secteur pour offrir des solutions innovantes et de haute qualité en BTP, architecture et conception.</div>
+            <div class="grid">
+                <div class="col-12 md:col-6 lg:col-3">
+                    <div class="flex align-items-center justify-content-center p-3">
+                        <img width="250px" height="250px" src="assets/images/entreprise1.jpg" alt="Entreprise 1">
+                    </div>
+                </div>
+                <div class="col-12 md:col-6 lg:col-3">
+                    <div class="flex align-items-center justify-content-center p-3">
+                        <img width="250px" height="250px" src="assets/images/entreprise2.png" alt="Entreprise 2">
+                    </div>
+                </div>
+                <div class="col-12 md:col-6 lg:col-3">
+                    <div class="flex align-items-center justify-content-center p-3">
+                        <img width="250px" height="250px" src="assets/images/entreprise3.png" alt="Entreprise 3">
+                    </div>
+                </div>
+                <div class="col-12 md:col-6 lg:col-3">
+                    <div class="flex align-items-center justify-content-center p-3">
+                        <img width="250px" height="250px" src="assets/images/entreprise4.jpg" alt="Entreprise 4">
+                    </div>
+                </div>
+                <div class="col-12 md:col-6 lg:col-3">
+                    <div class="flex align-items-center justify-content-center p-3">
+                        <img width="250px" height="250px" src="assets/images/entreprise5.jpg" alt="Entreprise 5">
+                    </div>
+                </div>
+                <div class="col-12 md:col-6 lg:col-3">
+                    <div class="flex align-items-center justify-content-center p-3">
+                        <img width="250px" height="250px" src="assets/images/entreprise6.png" alt="Entreprise 6">
+                    </div>
+                </div>
+                <div class="col-12 md:col-6 lg:col-3">
+                    <div class="flex align-items-center justify-content-center p-3">
+                        <img width="250px" height="250px" src="assets/images/entreprise7.png" alt="Entreprise 7">
+                    </div>
+                </div>
+                <div class="col-12 md:col-6 lg:col-3">
+                    <div class="flex align-items-center justify-content-center p-3">
+                        <img width="250px" height="250px" src="assets/images/entreprise8.png" alt="Entreprise 8">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="surface-ground px-4 py-8 md:px-6 lg:px-8">
+        <div class="font-bold text-5xl text-900 mb-5 text-center">Articles à la Une</div>
+        <div class="grid nogutter">
+            <div class="col-12 lg:col-4 p-3">
+                <div class="shadow-2 border-round h-full surface-card">
+                    <img height="300px" src="assets/images/construction-1.jpg" alt="Image" class="block w-full border-round-top">
+                    <div class="p-4">
+                        <span class="block font-medium text-blue-600 mb-3">BTP</span>
+                        <div class="text-xl text-900 font-medium mb-3 line-height-3">Réussir votre projet de construction : nos conseils</div>
+                        <div class="line-height-3 mb-3 text-700">Découvrez nos meilleures pratiques pour la gestion de projets de construction, de l'architecture à la réalisation.</div>
+                        <div class="flex">
+                            <p-avatar image="assets/images/avatar-m-1.png" shape="circle" class="p-element">
+                                <div class="p-avatar p-component p-avatar-image p-avatar-circle"><img src="assets/images/avatar-m-1.png" class="ng-star-inserted"></div>
+                            </p-avatar>
+                            <div class="ml-2">
+                                <div class="text-sm font-bold text-900 mb-1">Jean Dupont</div>
+                                <div class="text-sm flex align-items-center text-700"><i class="pi pi-calendar mr-1 text-sm"></i><span>10 Août, 2024</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 lg:col-4 p-3">
+                <div class="shadow-2 border-round h-full surface-card">
+                    <img height="300px" src="assets/images/construction-2.jpg" alt="Image" class="block w-full border-round-top">
+                    <div class="p-4 flex flex-column">
+                        <span class="block font-medium text-green-600 mb-3">Architecture</span>
+                        <div class="text-xl text-900 font-medium mb-3 line-height-3">Tendances architecturales pour 2024</div>
+                        <div class="line-height-3 mb-3 text-700">Explorez les nouvelles tendances en architecture qui redéfinissent les espaces modernes.</div>
+                        <div class="flex">
+                            <p-avatar image="assets/images/avatar-m-2.png" shape="circle" class="p-element">
+                                <div class="p-avatar p-component p-avatar-image p-avatar-circle"><img src="assets/images/avatar-m-2.png" class="ng-star-inserted"></div>
+                            </p-avatar>
+                            <div class="ml-2">
+                                <div class="text-sm font-bold text-900 mb-1">Sophie Martin</div>
+                                <div class="text-sm flex align-items-center text-700"><i class="pi pi-calendar mr-1 text-sm"></i><span>12 Août, 2024</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 lg:col-4 p-3">
+                <div class="shadow-2 border-round h-full surface-card">
+                    <img height="300px" src="assets/images/construction-3.webp" alt="Image" class="block w-full border-round-top">
+                    <div class="p-4">
+                        <span class="block font-medium text-red-600 mb-3">Réalisation</span>
+                        <div class="text-xl text-900 font-medium mb-3 line-height-3">Comment optimiser vos projets de construction</div>
+                        <div class="line-height-3 mb-3 text-700">Des stratégies éprouvées pour maximiser l'efficacité et réduire les coûts dans vos projets de réalisation.</div>
+                        <div class="flex">
+                            <p-avatar image="assets/images/avatar-m-3.png" shape="circle" class="p-element">
+                                <div class="p-avatar p-component p-avatar-image p-avatar-circle"><img src="assets/images/avatar-m-3.png" class="ng-star-inserted"></div>
+                            </p-avatar>
+                            <div class="ml-2">
+                                <div class="text-sm font-bold text-900 mb-1">Marc Lefèvre</div>
+                                <div class="text-sm flex align-items-center text-700"><i class="pi pi-calendar mr-1 text-sm"></i><span>15 Août, 2024</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="surface-section px-4 py-8 md:px-6 lg:px-8">
+        <div>
+            <div class="text-blue-600 text-2xl mb-4 text-center">Économisez jusqu'à 25% aujourd'hui</div>
+            <div class="text-900 font-bold text-4xl text-center mb-4">Plans Tarifaires</div>
+            <div class="flex flex-column md:flex-row mt-6">
+                <div class="col-12 lg:col-4 p-1 mb-6 md:mb-0 mr-0 md:mr-4 flex flex-column flex-grow-1">
+                    <div class="bg-bluegray-100 text-center p-3" style="border-radius: 6px 6px 0 0;">
+                        <div class="text-2xl font-bold text-bluegray-900 mb-3">Basique</div>
+                        <div class="flex align-items-center justify-content-center">
+                            <span class="font-bold text-bluegray-900 text-5xl mr-2">500€</span>
+                        </div>
+                    </div>
+                    <div class="bg-bluegray-50 p-4 flex flex-column flex-grow-1"
+                        style="box-shadow: inset 0px 2px 8px rgba(0, 0, 0, 0.1); border-radius: 0 0 6px 6px;">
+                        <div class="text-bluegray-500 font-bold line-height-3 mb-4">Conception de plans architecturaux de base et consultation pour projets résidentiels.</div>
+                        <ul class="list-none p-0 m-0 mb-5 text-bluegray-600">
+                            <li class="flex align-items-center mb-3">
+                                <i class="pi pi-circle-on mr-2 text-sm"></i><span>Plans d'architecture</span>
+                            </li>
+                            <li class="flex align-items-center">
+                                <i class="pi pi-circle-on mr-2 text-sm"></i><span>Consultation initiale</span>
+                            </li>
+                        </ul>
+                        <button pbutton="" pripple="" label="Essayer Gratuitement"
+                            class="p-element p-ripple p-button-secondary w-full mt-auto p-button p-component">
+                            <span class="p-button-label">Essayer Gratuitement</span><span class="p-ink"></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-12 lg:col-4 p-1 mb-6 md:mb-0 mr-0 md:mr-4 flex flex-column flex-grow-1">
+                    <div class="bg-bluegray-800 text-center p-3 border-3 border-green-500 border-bottom-none"
+                        style="border-radius: 6px 6px 0 0;">
+                        <div class="bg-green-500 text-0 font-bold text-sm inline-block p-2 mb-3"
+                            style="border-radius: 20px;">LE PLUS POPULAIRE</div>
+                        <div class="text-2xl font-bold text-white mb-3">Standard</div>
+                        <div class="flex align-items-center justify-content-center">
+                            <span class="font-bold text-white text-5xl mr-2">1000€</span>
+                        </div>
+                    </div>
+                    <div class="bg-bluegray-900 p-4 flex flex-column flex-grow-1 border-3 border-green-500 border-top-none"
+                        style="box-shadow: inset 0px 2px 8px rgba(0, 0, 0, 0.1); border-radius: 0 0 6px 6px;">
+                        <div class="text-bluegray-400 font-bold line-height-3 mb-4">Conception détaillée de plans pour projets commerciaux et résidentiels, avec consultations et gestion de projet incluses.</div>
+                        <ul class="list-none p-0 m-0 mb-5 text-bluegray-100">
+                            <li class="flex align-items-center mb-3">
+                                <i class="pi pi-circle-on mr-2 text-sm"></i><span>Plans détaillés</span>
+                            </li>
+                            <li class="flex align-items-center mb-3">
+                                <i class="pi pi-circle-on mr-2 text-sm"></i><span>Consultations illimitées</span>
+                            </li>
+                            <li class="flex align-items-center mb-3">
+                                <i class="pi pi-circle-on mr-2 text-sm"></i><span>Gestion de projet</span>
+                            </li>
+                            <li class="flex align-items-center">
+                                <i class="pi pi-circle-on mr-2 text-sm"></i><span>Révisions illimitées</span>
+                            </li>
+                        </ul>
+                        <button pbutton="" pripple="" label="Acheter Maintenant"
+                            class="p-element p-ripple p-button-success w-full mt-auto p-button p-component">
+                            <span class="p-button-label">Commencer Maintenant</span><span class="p-ink"></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-12 lg:col-4 p-1 mb-6 md:mb-0 flex flex-column flex-grow-1">
+                    <div class="bg-blue-800 text-center p-3" style="border-radius: 6px 6px 0 0;">
+                        <div class="text-2xl font-bold text-white mb-3">Entreprise</div>
+                        <div class="flex align-items-center justify-content-center">
+                            <span class="font-bold text-white text-5xl mr-2">2000€</span>
+                        </div>
+                    </div>
+                    <div class="bg-blue-900 p-4 flex flex-column flex-grow-1"
+                        style="box-shadow: inset 0px 2px 8px rgba(0, 0, 0, 0.1); border-radius: 0 0 6px 6px;">
+                        <div class="text-blue-400 font-bold line-height-3 mb-4">Services complets de conception, planification et réalisation pour projets à grande échelle, y compris l'accompagnement complet de la conception à la réalisation.</div>
+                        <ul class="list-none p-0 m-0 mb-5 text-blue-100">
+                            <li class="flex align-items-center mb-3">
+                                <i class="pi pi-circle-on mr-2 text-sm"></i><span>Conception complète</span>
+                            </li>
+                            <li class="flex align-items-center mb-3">
+                                <i class="pi pi-circle-on mr-2 text-sm"></i><span>Planification et gestion de projet</span>
+                            </li>
+                            <li class="flex align-items-center mb-3">
+                                <i class="pi pi-circle-on mr-2 text-sm"></i><span>Réalisation et supervision</span>
+                            </li>
+                            <li class="flex align-items-center mb-3">
+                                <i class="pi pi-circle-on mr-2 text-sm"></i><span>Consultation continue</span>
+                            </li>
+                            <li class="flex align-items-center mb-3">
+                                <i class="pi pi-circle-on mr-2 text-sm"></i><span>Révisions et ajustements illimités</span>
+                            </li>
+                        </ul>
+                        <button pbutton="" pripple="" label="Nous Contacter"
+                            class="p-element p-ripple p-button-outlined w-full mt-auto p-button p-component">
+                            <span class="p-button-label">Nous Contacter</span><span class="p-ink"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="surface-ground">
+        <div class="grid grid-nogutter">
+            <!-- Section avec l'image d'arrière-plan et les informations de contact -->
+            <div class="col-12 md:col-6 bg-no-repeat bg-cover p-8"
+                style="background-image: url('assets/images/contact-2.jpg');">
+                <div class="text-white text-2xl font-medium mb-6">Contactez-Nous</div>
+                <div class="text-gray-300 line-height-3 mb-6">Nous sommes à votre disposition pour discuter de vos projets de BTP, d'architecture, et de conception de plans. N'hésitez pas à nous contacter pour toute demande d'information ou pour un devis personnalisé.</div>
+                <a class="inline-flex align-items-center text-blue-300 font-bold no-underline cursor-pointer">
+                    <span class="mr-3">Voir l'adresse sur Google Maps</span>
+                    <i class="pi pi-arrow-right"></i>
+                </a>
+                <ul class="list-none p-0 m-0 mt-6 text-white">
+                    <li class="flex align-items-center mb-3"><i class="pi pi-phone mr-2"></i><span>+33 123 456 789</span></li>
+                    <li class="flex align-items-center mb-3"><i class="pi pi-twitter mr-2"></i><span>@architecture_btp</span></li>
+                    <li class="flex align-items-center"><i class="pi pi-inbox mr-2"></i><span>contact@architecture-btp.com</span></li>
+                </ul>
+            </div>
+            <!-- Formulaire de contact -->
+            <div class="col-12 md:col-6">
+                <div class="p-fluid formgrid grid px-4 py-8 md:px-6 lg:px-8">
+                    <div class="field col-12 lg:col-6 mb-4">
+                        <input id="firstname" type="text" pinputtext="" placeholder="Prénom"
+                            class="p-inputtext p-component p-element py-3 px-2 text-lg">
+                    </div>
+                    <div class="field col-12 lg:col-6 mb-4">
+                        <input id="lastname" type="text" pinputtext="" placeholder="Nom"
+                            class="p-inputtext p-component p-element py-3 px-2 text-lg">
+                    </div>
+                    <div class="field col-12 mb-4">
+                        <input id="email" type="text" pinputtext="" placeholder="Email"
+                            class="p-inputtext p-component p-element py-3 px-2 text-lg">
+                    </div>
+                    <div class="field col-12 mb-4">
+                        <input id="phone" type="text" pinputtext="" placeholder="Téléphone"
+                            class="p-inputtext p-component p-element py-3 px-2 text-lg">
+                    </div>
+                    <div class="field col-12 mb-4">
+                        <textarea id="message" pinputtextarea="" rows="3"
+                            placeholder="Votre message"
+                            class="p-inputtextarea p-inputtext p-component p-element py-3 px-2 text-lg p-inputtextarea-resizable"
+                            style="height: 104px; overflow: hidden;"></textarea>
+                    </div>
+                    <div class="col-12 text-right">
+                        <button type="button" pbutton="" pripple="" label="Envoyer"
+                            icon="pi pi-envelope" class="p-element p-ripple px-5 py-3 w-auto p-button p-component">
+                            <span class="p-button-icon p-button-icon-left pi pi-envelope" aria-hidden="true"></span>
+                            <span class="p-button-label">Envoyer</span>
+                            <span class="p-ink"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="bg-gray-900 px-4 py-8 md:px-6 lg:px-8">
+        <div class="bg-gray-900">
+            <div class="grid">
+                <!-- Section logo et nom de l'entreprise -->
+                <div class="col-12 md:col-3 flex flex-wrap justify-content-start md:mb-0 mb-3">
+                    <img src="assets/images/GVA.png" alt="logo de l'entreprise" width="50" height="50" class="mr-3">
+                    <div class="text-gray-300 font-bold text-5xl">BTP Architectes</div>
+                </div>
+                
+                <!-- Informations de contact -->
+                <div class="col-12 md:col-3">
+                    <div class="text-white text-lg mb-4 flex flex-wrap" style="max-width: 290px;">
+                        15 Rue des Constructions, 75001 Paris, France
+                    </div>
+                    <div class="text-white mb-3">
+                        <i class="pi pi-phone surface-800 border-round p-1 mr-2"></i>(33) 1 2345 6789
+                    </div>
+                    <div class="text-white mb-3">
+                        <i class="pi pi-inbox surface-800 border-round p-1 mr-2"></i>contact@btparchitectes.fr
+                    </div>
+                </div>
+                
+                <!-- Liens de l'entreprise -->
+                <div class="col-12 md:col-3 text-gray-200">
+                    <div class="text-white font-bold line-height-3 mb-3">Entreprise</div>
+                    <a class="line-height-3 block cursor-pointer mb-2">À Propos</a>
+                    <a class="line-height-3 block cursor-pointer mb-2">Nos Services</a>
+                    <a class="line-height-3 block cursor-pointer mb-2">Réalisations</a>
+                    <a class="line-height-3 block cursor-pointer mb-2">Équipe</a>
+                    <a class="line-height-3 block cursor-pointer">Contact</a>
+                </div>
+                
+                <!-- Ressources -->
+                <div class="col-12 md:col-3 text-gray-200">
+                    <div class="text-white font-bold line-height-3 mb-3">Ressources</div>
+                    <a class="line-height-3 block cursor-pointer mb-2">Commencer</a>
+                    <a class="line-height-3 block cursor-pointer mb-2">Blog</a>
+                    <a class="line-height-3 block cursor-pointer">Études de Cas</a>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+</div>

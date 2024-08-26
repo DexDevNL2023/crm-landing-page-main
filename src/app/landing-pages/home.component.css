@@ -1,0 +1,37 @@
+/* Style pour les éléments sur mobile */
+@media (max-width: 1024px) {
+    .lg\:hidden {
+      display: none;
+    }
+    
+    .lg\:flex {
+      display: flex;
+    }
+    
+    .hidden {
+      display: none;
+    }
+    
+    .block {
+      display: block;
+    }
+  }
+  
+  /* Style pour les éléments sur grand écran */
+  @media (min-width: 1024px) {
+    .lg\:flex {
+      display: flex;
+    }
+    
+    .lg\:hidden {
+      display: none;
+    }
+    
+    .absolute {
+      position: absolute;
+    }
+    
+    .lg\:static {
+      position: static;
+    }
+  }
