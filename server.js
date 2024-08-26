@@ -4,7 +4,7 @@ const port = process.env.PORT || 8080;
 const app = express();
 
 app.use(express.static(__dirname));
-app.use(express.static(__dirname + '/dist/crm-landing-page'))
+app.use(express.static(__dirname + '/dist/crm-landing-page-main'))
 
 app.get('/ping', function (req, res)
 {
@@ -13,7 +13,7 @@ app.get('/ping', function (req, res)
 
 app.get('/*', function (req, res)
 {
-    res.sendFile(path.join(__dirname + '/dist/crm-landing-page/index.html'));
+    res.sendFile(path.join(__dirname + '/dist/crm-landing-page-main/index.html'));
 });
 
 app.listen(port, function ()

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-      "crm-landing-page": {
+      "crm-landing-page-main": {
           "projectType": "application",
           "schematics": {
               "@schematics/angular:component": {
@@ -17,7 +17,7 @@
               "build": {
                   "builder": "@angular-devkit/build-angular:browser",
                   "options": {
-                      "outputPath": "dist/crm-landing-page",
+                      "outputPath": "dist/crm-landing-page-main",
                       "index": "src/index.html",
                       "main": "src/main.ts",
                       "polyfills": [
@@ -73,14 +73,14 @@
               "serve": {
                   "builder": "@angular-devkit/build-angular:dev-server",
                   "options": {
-                      "browserTarget": "crm-landing-page:build"
+                      "browserTarget": "crm-landing-page-main:build"
                   },
                   "configurations": {
                       "production": {
-                          "browserTarget": "crm-landing-page:build:production"
+                          "browserTarget": "crm-landing-page-main:build:production"
                       },
                       "development": {
-                          "browserTarget": "crm-landing-page:build:development"
+                          "browserTarget": "crm-landing-page-main:build:development"
                       }
                   },
                   "defaultConfiguration": "development"
@@ -88,7 +88,7 @@
               "extract-i18n": {
                   "builder": "@angular-devkit/build-angular:extract-i18n",
                   "options": {
-                      "browserTarget": "crm-landing-page:build"
+                      "browserTarget": "crm-landing-page-main:build"
                   }
               },
               "test": {
