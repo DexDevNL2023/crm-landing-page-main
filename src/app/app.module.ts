@@ -97,15 +97,7 @@ import {AppComponent} from './app.component';
 
 import {RouterLink, RouterModule} from "@angular/router";
 import {MessageService} from "primeng/api";
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HomeComponent } from './landing-pages/home.component';
-
-
-// Function to load translation files
-export function HttpLoaderFactory(http: HttpClient) {
-    return new TranslateHttpLoader(http, './assets/i18n/', '.json');
-}
 
 @NgModule({
     imports: [
@@ -114,13 +106,6 @@ export function HttpLoaderFactory(http: HttpClient) {
         FormsModule,
         AppRoutingModule,
         HttpClientModule,
-        TranslateModule.forRoot({
-          loader: {
-            provide: TranslateLoader,
-            useFactory: HttpLoaderFactory,
-            deps: [HttpClient]
-          }
-        }),
         BrowserAnimationsModule,
         AccordionModule,
         AutoCompleteModule,
